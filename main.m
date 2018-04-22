@@ -37,15 +37,15 @@ function [random, rawSignal, scrambledSignal] = main(codeLen)
             plot(rawSignal, 'r.'); 
             plot(scrambledSignal, 'g'); 
             plot(differences, 'b.');
-            title('Sygnaly przed i po; wskazanie roznic');
+            title('Sygna³y przed i po scramblingu; wskazanie ró¿nic');
         hold off;
     
         subplot(2, 1, 2);
         bar(y);
         hold on;
-            %text(1 : length(lengths1), lengths1, num2str(lengths1'), 'vert', 'bottom', 'horiz', 'center');
+            text(1 : length(lengths0), lengths0, num2str(lengths0'), 'vert', 'bottom', 'horiz', 'right');
+            text(1 : length(lengths1), lengths1, num2str(lengths1'), 'vert', 'bottom', 'horiz', 'left');
             legend('Sygnal przed scramblingiem', 'Sygnal po scramblingu');
-            title('Dlugosci ciagow');
+            title('D³ugoœci ci¹gów');
         hold off;
-    
 end
