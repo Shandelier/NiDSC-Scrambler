@@ -1,4 +1,5 @@
 function scrambledSignal = scramble(rawSignal)
+    %% Scrambling sygna³u
     scrambledSignal = rawSignal;
     syncCode = resetSYNC();
     for i = 1 : length(scrambledSignal)
