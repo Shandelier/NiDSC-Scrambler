@@ -11,4 +11,5 @@ function [scrambledRandomSignal, scrambledZerosSignal, scrambledOnesSignal] = ma
     %% Testowanie sygna³u samych jedynek
     onesSignal = ones(1, codeLen);
     scrambledOnesSignal = makeTests(onesSignal);
+    
 end

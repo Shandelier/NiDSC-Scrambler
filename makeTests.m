@@ -20,8 +20,8 @@ function scrambledSignal = makeTests(rawSignal, alignMatrices)
     end
     
     %% Szukanie iloœci ci¹gów o danej d³ugoœci
-    [~, lengths0] = getLengths(rawSignal);
-    [~, lengths1] = getLengths(scrambledSignal);
+    [~, lengths0] = getLengths(rawSignal, alignMatrices);
+    [~, lengths1] = getLengths(scrambledSignal, alignMatrices);
     
     %% Wyrównanie macierzy powy¿ej dla celu rysowania wykresu
     if alignMatrices == 1

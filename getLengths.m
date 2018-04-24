@@ -1,4 +1,4 @@
-function [x, lengths] = getLengths(signal)
+function [x, lengths] = getLengths(signal, alignMatrices)
     %% Przebie¿enie próbek dla znalezienia najd³u¿szego ci¹gu
     maxlen = 0;
     len = 1;
@@ -13,10 +13,11 @@ function [x, lengths] = getLengths(signal)
         end
     end
     % jeœliby najd³u¿szy mia³ byæ na koñcu sygna³u
-    %if maxlen < len
-    %    maxlen = len;
-    %end
-    
+    if alignMatrices == 1
+        if maxlen < len
+            maxlen = len;
+        end
+    end
     %% Przebie¿enie próbek dla ustalenia iloœci ci¹gów o danej d³ugoœci
     len = 1;
     x = 1 : maxlen;
@@ -30,7 +31,9 @@ function [x, lengths] = getLengths(signal)
         end
     end
     % jeœliby ci¹g koñczy³ siê na ostatnim elemencie
-    %if signal(i) == signal(i - 1)
-    %    lengths(len) = lengths(len) + 1;
-    %end
+    if alignMatrices == 1
+        if signal(i) == signal(i - 1)
+            lengths(len) = lengths(len) + 1;
+        end
+    end
 end
