@@ -6,5 +6,9 @@ function scrambledSignal = scramble(rawSignal)
         t = xor(syncCode(14), syncCode(15));
         syncCode = moveRight(syncCode, t);
         scrambledSignal(i) = xor(scrambledSignal(i), t);
+        
+        if mod(i, 32) == 0
+            syncCode = resetSYNC();
+        end
     end
 end
