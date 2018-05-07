@@ -12,5 +12,5 @@ function mp_descrambled = mp_descrambler(scrambled)
             register(j) = register(j-1);
         end
         register(1) = scrambled(i);
-    end    
+    end
 end
