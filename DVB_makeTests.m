@@ -1,10 +1,10 @@
-function scrambledSignal = makeTests(rawSignal, alignMatrices)
+function scrambledSignal = DVB_makeTests(rawSignal, alignMatrices)
     if ~exist('alignMatrices', 'var')
         alignMatrices = 0;
     end
 
     %% Wykonanie scramblingu
-    scrambledSignal = scramble(rawSignal);
+    scrambledSignal = DVB_scramble(rawSignal);
     
     %% Znalezienie ró¿nic miêdzy sygna³em przed i po scramblingu
     % Ró¿nice zostan¹ ukazane jako punkty pod wykresem (na prostej y = -0.25)
@@ -15,7 +15,7 @@ function scrambledSignal = makeTests(rawSignal, alignMatrices)
         if differences(i) == 1
             differences(i) = -0.25;
         else
-            differences(i) = 1.25;
+            differences(i) = 5; % Aby usun¹æ punkt z wykresu.
         end
     end
     
@@ -24,21 +24,15 @@ function scrambledSignal = makeTests(rawSignal, alignMatrices)
     [~, lengths1] = getLengths(scrambledSignal, alignMatrices);
     
     %% Wyrównanie macierzy powy¿ej dla celu rysowania wykresu
-    if alignMatrices == 1
-        if length(lengths0) < length(lengths1)
-            for i = length(lengths0) + 1 : 1 : length(lengths1)
-                lengths0(i) = 0;
-            end
-        elseif length(lengths1) < length(lengths0)
-            for i = length(lengths1) + 1 : 1 : length(lengths0)
-                lengths1(i) = 0;
-            end
+    if length(lengths0) < length(lengths1)
+        for i = length(lengths0) + 1 : 1 : length(lengths1)
+            lengths0(i) = 0;
         end
-    else
-        if length(lengths0) < length(lengths1)
-            for i = length(lengths0) + 1 : 1 : length(lengths1)
-                lengths0(i) = 0;
-            end
+    end
+    
+    if alignMatrices == 1 && length(lengths1) < length(lengths0)
+        for i = length(lengths1) + 1 : 1 : length(lengths0)
+            lengths1(i) = 0;
         end
     end
     
@@ -50,9 +44,9 @@ function scrambledSignal = makeTests(rawSignal, alignMatrices)
         ylim([-0.5 1.5]); 
         hold on;
             plot(rawSignal, 'r.'); 
-            plot(scrambledSignal, 'g'); 
+            stairs(scrambledSignal, 'g'); 
             plot(differences, 'b.');
-            title('Sygna³y przed i po scramblingu; wskazanie ró¿nic');
+            title('Sygna³y przed i po scramblingu DVB; wskazanie ró¿nic');
         hold off;
         
         subplot(2, 1, 2);
@@ -60,6 +54,6 @@ function scrambledSignal = makeTests(rawSignal, alignMatrices)
         hold on;
             text(1 : length(lengths0), lengths0, num2str(lengths0'), 'vert', 'bottom', 'horiz', 'right');
             text(1 : length(lengths1), lengths1, num2str(lengths1'), 'vert', 'bottom', 'horiz', 'left');
-            legend('Sygnal przed scramblingiem', 'Sygnal po scramblingu');
+            legend('Sygna³ przed scramblingiem', 'Sygna³ po scramblingu');
             title('D³ugoœci ci¹gów');
         hold off;
