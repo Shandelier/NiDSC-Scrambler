@@ -1,5 +1,5 @@
-%%%     FUNKCJA WYKONUJACA PODWOJNY SCRAMBLING I OBLICZAJACA BER        %%%
-function [] = doubleScramTest(codeLen)
+%%%     FUNKCJA WYKONUJACA PODWOJNY SCRAMBLING I zwracaj±ca ich BER        %%%
+function [BER] = doubleScramTest(codeLen)
     %% Testowanie sygna³u losowego
     random = rand(1, codeLen);        % losowanie codeLen wartoœci z przedzia³u <0; 1>
     randomSignal = round(random);     % zamiana wartoœci losowych na zera i jedynki poprzez zaokr¹glenie
