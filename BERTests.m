@@ -16,21 +16,21 @@ function BERTests(randomSignal, zerosSignal, onesSignal, P)
     subplot(1, 3, 1);
         plot(P, y_r_dvb, '-o', P, y_r_v67, '-o');
         title('BER dla sygna³u losowego');
-        legend('DVB', 'V.67');
+        legend('DVB', 'V.34');
         xlabel('Prawdopodobieñstwo (procent)');
         ylabel('Iloœæ b³êdów (procent)');
     
     subplot(1, 3, 2);
         plot(P, y_z_dvb, '-o', P, y_z_v67, '-o');
         title('BER dla sygna³u zer');
-        legend('DVB', 'V.67');
+        legend('DVB', 'V.34');
         xlabel('Prawdopodobieñstwo (procent)');
         ylabel('Iloœæ b³êdów (procent)');
     
     subplot(1, 3, 3);
         plot(P, y_o_dvb, '-o', P, y_o_v67, '-o');
         title('BER dla sygna³u jedynek');
-        legend('DVB', 'V.67');
+        legend('DVB', 'V.34');
         xlabel('Prawdopodobieñstwo (procent)');
         ylabel('Iloœæ b³êdów (procent)');
 end
