@@ -25,8 +25,8 @@ function main(codeLen)
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %% V.67
-    disp('Testowanie scramblingu V.67...')
+    %% V.34
+    disp('Testowanie scramblingu V.34...')
     
     %% Testowanie sygna³u losowego
     mp_makeTests(randomSignal, 1);

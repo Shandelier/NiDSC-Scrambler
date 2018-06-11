@@ -4,7 +4,7 @@ function BERTests(randomSignal, zerosSignal, onesSignal, P)
     [~, y_z_dvb] = DVB_BERTest(zerosSignal, P);
     [~, y_o_dvb] = DVB_BERTest(onesSignal, P);
     
-    %% BER dla scramblingu V.67
+    %% BER dla scramblingu V.34
     [~, y_r_v67] = mp_BERTest(randomSignal, P);
     [~, y_z_v67] = mp_BERTest(zerosSignal, P);
     [~, y_o_v67] = mp_BERTest(onesSignal, P);
