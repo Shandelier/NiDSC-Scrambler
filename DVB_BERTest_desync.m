@@ -1,20 +1,18 @@
-function [P, errors] = DVB_BERTest(rawSignal, P)
+function [P, errors] = DVB_BERTest_desync(rawSignal, P, frequency, syncSeq)
     %% Przygotowanie danych
     if(~exist('P', 'var'))
         P = [0.0001 0.00015 0.0002 0.00025 0.0003 0.00035 0.0004 0.00045 0.0005];
     end
     
-    syncSeq = [0 1 0 0 1 0 1 1];
     scrambledSignal = DVB_scramble(rawSignal);
-    %scrambledSignalWithSyncSeq = addSyncSequence(syncSeq, 120, scrambledSignal);
-    scrambledSignalWithSyncSeq = scrambledSignal;
+    scrambledSignalWithSyncSeq = addSyncSequence(syncSeq, frequency, scrambledSignal);
     P_len = length(P);
     errors = zeros(1, P_len);
     
     %% Testowanie dla ka¿dego p z P
     for i = 1 : P_len
         noisySignal = addNoise(scrambledSignalWithSyncSeq, P(i));
-        descrambledSignal = DVB_descramble(noisySignal, syncSeq);
+        descrambledSignal = DVB_descramble_sync(noisySignal, syncSeq);
         errors(i) = sum(~compareSignals(rawSignal, descrambledSignal(1:length(rawSignal)))); % Konieczna negacja.
     end
     

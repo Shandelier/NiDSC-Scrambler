@@ -8,12 +8,14 @@ function mp_descrambled = mp_descrambler(scrambled, syncSeq)
     j = 1;
     seqCount = 0;
     for i = 1 : length(scrambled)
-        if scrambled(i : i + len_syncSeq - 1) == syncSeq
-            register = zeros(1, 23);
-            i = i + len_syncSeq - 1;
-            seqCount = seqCount + 1;
-            continue;
-        end
+        %if length(scrambled) - i >= len_syncSeq
+        %    if scrambled(i : i + len_syncSeq - 1) == syncSeq
+        %        register = zeros(1, 23);
+        %        i = i + len_syncSeq - 1;
+        %        seqCount = seqCount + 1;
+        %        continue;
+        %    end
+        %end
         
         t = xor(register(18), register(23));
         mp_descrambled(j) = xor(scrambled(i), t);
@@ -26,5 +28,5 @@ function mp_descrambled = mp_descrambler(scrambled, syncSeq)
         j = j + 1;
     end
     
-    mp_descrambled = mp_descrambled(1 : (length(mp_descrambled) - seqCount * len_syncSeq));
+    %mp_descrambled = mp_descrambled(1 : (length(mp_descrambled) - seqCount * len_syncSeq));
 end

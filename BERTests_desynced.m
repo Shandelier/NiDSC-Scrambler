@@ -1,13 +1,13 @@
-function BERTests(randomSignal, zerosSignal, onesSignal, P)
+function BERTests_desynced(randomSignal, zerosSignal, onesSignal, P, frequency, syncSeq)
     %% BER dla scramblingu DVB
-    [~, y_r_dvb] = DVB_BERTest(randomSignal, P);
-    [~, y_z_dvb] = DVB_BERTest(zerosSignal, P);
-    [~, y_o_dvb] = DVB_BERTest(onesSignal, P);
+    [~, y_r_dvb] = DVB_BERTest_desync(randomSignal, P, frequency, syncSeq);
+    [~, y_z_dvb] = DVB_BERTest_desync(zerosSignal, P, frequency, syncSeq);
+    [~, y_o_dvb] = DVB_BERTest_desync(onesSignal, P, frequency, syncSeq);
     
     %% BER dla scramblingu V.34
-    [~, y_r_v34] = mp_BERTest(randomSignal, P);
-    [~, y_z_v34] = mp_BERTest(zerosSignal, P);
-    [~, y_o_v34] = mp_BERTest(onesSignal, P);
+    [~, y_r_v34] = mp_BERTest_desync(randomSignal, P, frequency, syncSeq);
+    [~, y_z_v34] = mp_BERTest_desync(zerosSignal, P, frequency, syncSeq);
+    [~, y_o_v34] = mp_BERTest_desync(onesSignal, P, frequency, syncSeq);
     
     %% Wykresy
     P = P * 100;
